@@ -9,6 +9,7 @@ public class CarController : MonoBehaviour
     public float vertInput;
     private float steeringAngle;
     private float speedCompensation;
+    [SerializeField] Vector3 centerOfMass;
 
     public WheelCollider frontLeftWC, frontRightWC;
     public WheelCollider rearLeftWC, rearRightWC;
@@ -20,7 +21,12 @@ public class CarController : MonoBehaviour
     public float frontRPM;
     public float rearRPM;
     public float rearWheelSpeed;
-    
+
+    private void Start()
+    {
+        GetComponent<Rigidbody>().centerOfMass = centerOfMass;
+    }
+
     private void FixedUpdate()
     {
         GetInput();
