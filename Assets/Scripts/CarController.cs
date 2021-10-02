@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
@@ -11,6 +12,8 @@ public class CarController : MonoBehaviour
     private float speedCompensation;
     [SerializeField] Vector3 centerOfMass;
 
+    public TextMeshProUGUI speedometer;
+    public TextMeshProUGUI tachometer;
     public WheelCollider frontLeftWC, frontRightWC;
     public WheelCollider rearLeftWC, rearRightWC;
     public Transform frontLeftTr, frontRightTr;
@@ -38,6 +41,8 @@ public class CarController : MonoBehaviour
         rearWheelSpeed = rearRPM * rearLeftWC.radius * 0.377f;
         tqe = rearLeftWC.motorTorque;
         speedCompensation = 1 - (rearWheelSpeed / 200);
+        speedometer.text = Mathf.RoundToInt(rearWheelSpeed).ToString();
+        tachometer.text = Mathf.RoundToInt(rearRPM).ToString();
     }
 
 
