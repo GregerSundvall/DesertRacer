@@ -1380,3 +1380,55 @@ System memory in use after: 252.6 MB.
 Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1908.
 Total: 2.418229 ms (FindLiveObjects: 0.224150 ms CreateObjectMapping: 0.057496 ms MarkObjects: 2.021423 ms  DeleteObjects: 0.113777 ms)
 
+========================================================================
+Received Import Request.
+  Time since last request: 583.799314 seconds.
+  path: Assets/Prefabs/Barrel.prefab
+  artifactKey: Guid(bf665cc515d764033a29e351f98f7515) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Barrel.prefab using Guid(bf665cc515d764033a29e351f98f7515) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c342442d1643f62fa443f8a8f26f2eb6') in 0.228431 seconds
+  Import took 0.232481 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002258 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.82 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  5.691 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.77 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1260 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 253.0 MB.
+System memory in use after: 253.1 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1912.
+Total: 10.456720 ms (FindLiveObjects: 1.119851 ms CreateObjectMapping: 0.290707 ms MarkObjects: 8.580015 ms  DeleteObjects: 0.460518 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000537 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.48 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.387 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.42 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1260 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 253.4 MB.
+System memory in use after: 253.4 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1915.
+Total: 6.371295 ms (FindLiveObjects: 1.372637 ms CreateObjectMapping: 0.656719 ms MarkObjects: 4.175658 ms  DeleteObjects: 0.163111 ms)
+
