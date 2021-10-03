@@ -14,8 +14,8 @@ public class CarController : MonoBehaviour
 
     public TextMeshProUGUI speedometer;
     public TextMeshProUGUI tachometer;
-    public WheelCollider frontLeftWC, frontRightWC;
-    public WheelCollider rearLeftWC, rearRightWC;
+    public TextMeshProUGUI gearDisplay;
+    public WheelCollider frontLeftWC, frontRightWC, rearLeftWC, rearRightWC;
     public Transform frontLeftTr, frontRightTr;
     public Transform rearLeftTr, rearRightTr;
     public float maxSteer = 30;
@@ -24,6 +24,8 @@ public class CarController : MonoBehaviour
     public float frontRPM;
     public float rearRPM;
     public float rearWheelSpeed;
+    public float engineRPM;
+    public int gear = 1;
 
     private void Start()
     {
@@ -38,11 +40,14 @@ public class CarController : MonoBehaviour
         UpdateWheelPoses();
         frontRPM = frontLeftWC.rpm;
         rearRPM = rearLeftWC.rpm;
+        engineRPM = rearLeftWC.rpm * 10;
         rearWheelSpeed = rearRPM * rearLeftWC.radius * 0.377f;
         tqe = rearLeftWC.motorTorque;
-        speedCompensation = 1 - (rearWheelSpeed / 200);
-        speedometer.text = Mathf.RoundToInt(rearWheelSpeed).ToString();
-        tachometer.text = Mathf.RoundToInt(rearRPM).ToString();
+        gear = Mathf.RoundToInt(engineRPM / 2800);
+        gearDisplay.text = gear.ToString();
+        speedCompensation = 1 - rearWheelSpeed / 200;
+        speedometer.text = $"<mspace=60>{Mathf.RoundToInt(Mathf.Clamp(rearWheelSpeed, 0, 300)).ToString()}</mspace>";
+        tachometer.text = $"<mspace=50>{Mathf.RoundToInt(engineRPM % 4000 + 900).ToString()}</mspace>";
     }
 
 
@@ -51,7 +56,7 @@ public class CarController : MonoBehaviour
         horizInput = Input.GetAxis("Horizontal");
         vertInput = Input.GetAxis("Vertical");
     }
-    
+
     private void Steer()
     {
         steeringAngle = maxSteer * horizInput * speedCompensation;
