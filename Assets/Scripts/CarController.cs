@@ -15,6 +15,7 @@ public class CarController : MonoBehaviour
     public TextMeshProUGUI speedometer;
     public TextMeshProUGUI tachometer;
     public TextMeshProUGUI gearDisplay;
+    public TextMeshProUGUI barrelsDisplay;
     public WheelCollider frontLeftWC, frontRightWC, rearLeftWC, rearRightWC;
     public Transform frontLeftTr, frontRightTr;
     public Transform rearLeftTr, rearRightTr;
@@ -27,9 +28,21 @@ public class CarController : MonoBehaviour
     public float engineRPM;
     public int gear = 1;
 
+    public int barrelsHit;
+    public Rigidbody rigidBody;
+
     private void Start()
     {
-        GetComponent<Rigidbody>().centerOfMass = centerOfMass;
+        rigidBody = GetComponent<Rigidbody>();
+        rigidBody.centerOfMass = centerOfMass;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "barrel")
+        {
+            barrelsHit++;
+        }
     }
 
     private void FixedUpdate()
@@ -48,6 +61,7 @@ public class CarController : MonoBehaviour
         speedCompensation = 1 - rearWheelSpeed / 200;
         speedometer.text = $"<mspace=60>{Mathf.RoundToInt(Mathf.Clamp(rearWheelSpeed, 0, 300)).ToString()}</mspace>";
         tachometer.text = $"<mspace=50>{Mathf.RoundToInt(engineRPM % 4000 + 900).ToString()}</mspace>";
+        barrelsDisplay.text = barrelsHit.ToString();
     }
 
 
@@ -85,7 +99,7 @@ public class CarController : MonoBehaviour
             rearLeftWC.brakeTorque = 0;
             rearRightWC.brakeTorque = 0;
             
-            if (rearWheelSpeed < 160)
+            if (rearWheelSpeed < 150)
             {
                 rearLeftWC.motorTorque = vertInput * motorForce;
                 rearRightWC.motorTorque = vertInput * motorForce;
@@ -94,7 +108,7 @@ public class CarController : MonoBehaviour
 
         if (vertInput < 0)
         {
-            if (rearWheelSpeed > 0)
+            if (frontLeftWC.rpm > 0 || frontRightWC.rpm > 0 || rearLeftWC.rpm > 0 || rearRightWC.rpm > 0)
             {
                 frontLeftWC.brakeTorque = (vertInput * -1) * (80 * rearWheelSpeed * speedCompensation);
                 frontRightWC.brakeTorque = (vertInput * -1) * (80 * rearWheelSpeed * speedCompensation);
@@ -108,11 +122,12 @@ public class CarController : MonoBehaviour
                 rearLeftWC.brakeTorque = 0;
                 rearRightWC.brakeTorque = 0;
 
-                if (rearWheelSpeed > - 50)
-                {
-                    rearLeftWC.motorTorque = vertInput * motorForce;
-                    rearRightWC.motorTorque = vertInput * motorForce;
-                }
+                rearLeftWC.motorTorque = vertInput * motorForce;
+                rearRightWC.motorTorque = vertInput * motorForce;
+                // if (rearWheelSpeed > - 50)
+                // {
+                //     
+                // }
             }
         }
     }

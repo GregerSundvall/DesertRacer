@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FrontLeftWheel
   - FrontRightWheel
+  - barrel
   layers:
   - Default
   - TransparentFX
