@@ -27,6 +27,7 @@ public class CarController : MonoBehaviour
     public float rearWheelSpeed;
     public float engineRPM;
     public int gear = 1;
+    public bool isGrounded;
 
     public int barrelsHit;
     public Rigidbody rigidBody;
@@ -43,6 +44,8 @@ public class CarController : MonoBehaviour
         {
             barrelsHit++;
         }
+
+        
     }
 
     private void FixedUpdate()
@@ -99,8 +102,12 @@ public class CarController : MonoBehaviour
             rearLeftWC.brakeTorque = 0;
             rearRightWC.brakeTorque = 0;
             
-            if (rearWheelSpeed < 150)
+            if (rearWheelSpeed < 150 
+                && rearLeftWC.GetGroundHit(out WheelHit hitL) 
+                || rearWheelSpeed < 150 
+                && rearRightWC.GetGroundHit(out WheelHit hitR))
             {
+                Debug.Log(rearLeftWC.GetGroundHit(out WheelHit hitLl));
                 rearLeftWC.motorTorque = vertInput * motorForce;
                 rearRightWC.motorTorque = vertInput * motorForce;
             }
